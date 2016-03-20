@@ -7,7 +7,7 @@
     <title>Дружим с пользовательским контентом</title>
     <link rel="stylesheet" href="shower-material/styles/screen-16x10.css">
 </head>
-<body class="shower">
+<body class="shower full">
 
 <header class="caption">
     <h1>Дружим с пользовательским контентом</h1>
@@ -44,7 +44,8 @@
     <pre><code>&lt;div <mark>contentEditable</mark>=&quot;true&quot;>
     Hello, world!
 &lt;/div></code></pre>
-    <p>Оформление меняется через <strong>document.<a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/execCommand"
+    <p>Оформление меняется через <strong>document.<a
+            href="https://developer.mozilla.org/en-US/docs/Web/API/Document/execCommand"
             target="_blank">execCommand</a>()</strong></p>
 </section>
 
@@ -66,7 +67,7 @@
         <li class="next">вместо <code>&lt;p></code> получаем <code>&lt;br>&lt;br></code>;</li>
         <li class="next">вместо <code>&lt;h3></code> &mdash;
             <code>&lt;p>&lt;strong>&lt;span style=&quot;font-size: 20px&quot;></code>;</li>
-        <li class="next">игнорируются типографские знаки (тире, кавычки и т.п.);</li>
+        <li class="next">пользователи игнорируют типографские знаки (тире, кавычки и т.п.);</li>
         <li class="next">нельзя использовать классы и обёртки;</li>
         <li class="next">нельзя вставить отзывчивые картинки.</li>
     </ul>
@@ -92,11 +93,11 @@
     <p class="next">Кто пользуется Markdown?</p>
     <p class="next">Кто знает как вставить картинку?</p>
     <p class="next"><code>![alt text](image.jpg)</code></p>
-    <p class="next">Кто из пользователей это запомнит?</p>
+    <p class="next">С какого раза ваши пользователи это запомнят?</p>
 </section>
 
 <section class="slide">
-    <h2 class="shout">Транформация контента</h2>
+    <h2 class="shout">Трансформация контента</h2>
 </section>
 
 <section class="slide">
@@ -115,27 +116,12 @@
         <em>(SHA256 работает медленнее на 64-битных системах)</em></p>
 </section>
 
-<section class="slide white">
-    <img class="cover" src="assets/img/posthtml.svg" alt="PostHTML logo">
-</section>
-
-<section class="slide">
-    <h2>PostHTML</h2>
-    <p><a href="https://github.com/posthtml/posthtml" target="_blank">github.com/posthtml/posthtml</a></p>
-    <ul>
-        <li>работает на Node.js;</li>
-        <li>можно запускать из CLI;</li>
-        <li>легко интегрируется в webpack, Gulp и Grunt;</li>
-        <li>можно использовать внутри веб-серверов Express, Koa, Hapi;</li>
-        <li>для него уже написаны десятки плагинов.</li>
-    </ul>
-</section>
-
 <section class="slide">
     <h2 class="shout">Что можно делать?</h2>
 </section>
 
 <section class="slide">
+    <h2>Что можно делать?</h2>
     <ul>
         <li>добавлять классы;</li>
     </ul>
@@ -170,36 +156,13 @@
 </section>
 
 <section class="slide">
+    <h2>Что можно делать?</h2>
     <ul>
         <li>добавлять классы;</li>
-        <li>удалять атрибут <strong>style</strong> и другие нежелательные атрибуты;</li>
-    </ul>
-</section>
-
-<section class="slide">
-    <ul>
-        <li>добавлять классы;</li>
-        <li>удалять атрибут <strong>style</strong> и другие нежелательные атрибуты;</li>
-        <li>заменять <strong>&lt;br>&lt;br></strong> на <strong>&lt;p></strong>;</li>
-    </ul>
-</section>
-
-<section class="slide">
-    <ul>
-        <li>добавлять классы;</li>
-        <li>удалять атрибут <strong>style</strong> и другие нежелательные атрибуты;</li>
-        <li>заменять <strong>&lt;br>&lt;br></strong> на <strong>&lt;p></strong>;</li>
-        <li>удалять пустые элементы и пробелы;</li>
-    </ul>
-</section>
-
-<section class="slide">
-    <ul>
-        <li>добавлять классы;</li>
-        <li>удалять атрибут <strong>style</strong> и другие нежелательные атрибуты;</li>
-        <li>заменять <strong>&lt;br>&lt;br></strong> на <strong>&lt;p></strong>;</li>
-        <li>удалять пустые элементы и пробелы;</li>
-        <li>делать обёртки для сохранения пропорций объектов;</li>
+        <li class="next">удалять атрибут <strong>style</strong> и другие нежелательные атрибуты;</li>
+        <li class="next">заменять <strong>&lt;br>&lt;br></strong> на <strong>&lt;p></strong>;</li>
+        <li class="next">удалять пустые элементы и пробелы;</li>
+        <li class="next">делать обёртки для сохранения пропорций объектов;</li>
     </ul>
 </section>
 
@@ -210,31 +173,22 @@
         <code>&lt;/div></code>
     </pre>
     <pre>
+        <code><mark class="comment">/* aspect ratio = 16:9 */</mark></code>
         <code>.box { position: relative; padding-bottom: 56.25%; }</code>
         <code>.box>iframe { position: absolute; width: 100%; height: 100%; }</code>
     </pre>
 </section>
 
 <section class="slide">
+    <h2>Что можно делать?</h2>
     <ul>
         <li>добавлять классы;</li>
         <li>удалять атрибут <strong>style</strong> и другие нежелательные атрибуты;</li>
         <li>заменять <strong>&lt;br>&lt;br></strong> на <strong>&lt;p></strong>;</li>
         <li>удалять пустые элементы и пробелы;</li>
         <li>делать обёртки для сохранения пропорций объектов;</li>
-        <li>расставлять типографские знаки;</li>
-    </ul>
-</section>
-
-<section class="slide">
-    <ul>
-        <li>добавлять классы;</li>
-        <li>удалять атрибут <strong>style</strong> и другие нежелательные атрибуты;</li>
-        <li>заменять <strong>&lt;br>&lt;br></strong> на <strong>&lt;p></strong>;</li>
-        <li>удалять пустые элементы и пробелы;</li>
-        <li>делать обёртки для сохранения пропорций объектов;</li>
-        <li>расставлять типографские знаки;</li>
-        <li>много чего ещё&hellip;</li>
+        <li class="next">расставлять типографские знаки;</li>
+        <li class="next">много чего ещё&hellip;</li>
     </ul>
 </section>
 
@@ -274,12 +228,23 @@
 <section class="slide">
     <h2>Подписи к иллюстрациям</h2>
     <pre>
-        <code><mark>&lt;figure></mark></code>
+        <code class="mark">&lt;figure></code>
         <code>  &lt;img src=&quot;photo.jpg&quot;</code>
         <code>    alt=&quot;Empty cans&quot;></code>
-        <code>  <mark>&lt;figcaption>Empty cans make the most noise.&lt;/figcaption></mark></code>
+        <code class="mark">  &lt;figcaption>Empty cans make the most noise.&lt;/figcaption></code>
         <code>&lt;/figure></code>
     </pre>
+</section>
+
+<section class="slide">
+    <h2>&laquo;Три в ряд&raquo;</h2>
+    <img class="place" style="width: 940px;"
+            src="assets/img/three-in-row.png"
+            alt="Три подряд иллюстрации выстраиваются в ряд">
+</section>
+
+<section class="slide">
+    <h2 class="shout">Одно простое действие за раз</h2>
 </section>
 
 <section class="slide">
@@ -299,6 +264,46 @@
     </pre>
 </section>
 
+<section class="slide white">
+    <img class="cover" src="assets/img/posthtml.svg" alt="PostHTML logo">
+</section>
+
+<section class="slide">
+    <h2>PostHTML</h2>
+    <p><a href="https://github.com/posthtml/posthtml" target="_blank">github.com/posthtml/posthtml</a></p>
+    <ul>
+        <li>работает на Node.js;</li>
+        <li>можно запускать из CLI;</li>
+        <li>легко интегрируется в webpack, Gulp и Grunt;</li>
+        <li>можно использовать внутри веб-серверов Express, Koa, Hapi;</li>
+        <li>для него уже написаны десятки плагинов.</li>
+    </ul>
+</section>
+
+<section class="slide">
+    <h2 class="shout">Напишите своё</h2>
+</section>
+
+<section class="slide">
+    <h2 class="shout">Задача для бекэндера</h2>
+</section>
+
+<section class="slide">
+    <h2 class="shout">Будет очень много разных тестовых сценариев</h2>
+</section>
+
+<section class="slide">
+    <h2 class="shout">Кеширование!</h2>
+</section>
+
+<section class="slide">
+    <h2>Заключение</h2>
+    <ol>
+        <li>Клиент счастлив.</li>
+        <li>Страница выглядит опрятно.</li>
+        <li>Повторно применяем трансформации в других проектах.</li>
+    </ol>
+</section>
 
 <div class="progress"></div>
 <script src="shower-core/shower.min.js"></script>
