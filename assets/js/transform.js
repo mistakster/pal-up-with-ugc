@@ -19,7 +19,7 @@
     function renderSourceCode(paper, x, y, cb) {
         var codeBlock = paper.group().addClass('source-code');
 
-        codeBlock.add(paper.rect(x + 0.5, y + 0.5, 100, 130).addClass('paper'));
+        codeBlock.add(paper.rect(x + 0.5, y + 0.5, 110, 130).addClass('paper'));
 
         (function (dx, dy) {
             function animatedText(ddx, ddy, text) {
@@ -77,7 +77,8 @@
     }
 
     function renderSourceTree(paper, x, y, cb) {
-        var treeBlock = paper.group().addClass('source-tree');
+        var treeBlock = paper.group().addClass('source-tree')
+            .attr('transform', 'matrix(1 0 0 1 -50 0)');
         var treeBranch = treeBlock.group().addClass('branch');
 
         function renderBoxedText(g, dx, dy, w, h, text, line) {
@@ -104,16 +105,16 @@
             runQueue([
                 renderBoxedText(treeBlock, dx + 35, dy, 30, 20, 'div',
                     {x1: x + 35 + 15, y1: y + 10, x2: x + 35 + 15, y2: y + 10}),
-                renderBoxedText(treeBlock, dx, dy + 40, 30, 20, 'h1',
-                    {x1: x + 35 + 15, y1: y + 10, x2: x + 15, y2: y + 50}),
-                renderBoxedText(treeBlock, dx - 20, dy + 80, 70, 20, 'Introduction',
-                    {x1: x + 15, y1: y + 50, x2: x - 20 + 35, y2: y + 90}),
-                renderBoxedText(treeBlock, dx + 70, dy + 40, 30, 20, 'div',
-                    {x1: x + 35 + 15, y1: y + 10, x2: x + 70 + 15, y2: y + 50}),
-                renderBoxedText(treeBlock, dx + 70, dy + 80, 30, 20, 'p',
-                    {x1: x + 70 + 15, y1: y + 50, x2: x + 70 + 15, y2: y + 90}),
-                renderBoxedText(treeBlock, dx + 50, dy + 120, 70, 20, 'Hello, world!',
-                    {x1: x + 70 + 15, y1: y + 90, x2: x + 50 + 35, y2: y + 130})
+                renderBoxedText(treeBlock, dx - 5, dy + 40, 30, 20, 'h1',
+                    {x1: x + 35 + 15, y1: y + 10, x2: x + 10, y2: y + 50}),
+                renderBoxedText(treeBlock, dx - 25, dy + 80, 70, 20, 'Introduction',
+                    {x1: x + 10, y1: y + 50, x2: x - 20 + 30, y2: y + 90}),
+                renderBoxedText(treeBlock, dx + 75, dy + 40, 30, 20, 'div',
+                    {x1: x + 40 + 15, y1: y + 10, x2: x + 70 + 20, y2: y + 50}),
+                renderBoxedText(treeBlock, dx + 75, dy + 80, 30, 20, 'p',
+                    {x1: x + 75 + 15, y1: y + 50, x2: x + 70 + 20, y2: y + 90}),
+                renderBoxedText(treeBlock, dx + 55, dy + 120, 70, 20, 'Hello, world!',
+                    {x1: x + 75 + 15, y1: y + 90, x2: x + 50 + 40, y2: y + 130})
             ], cb)
         }(x, y));
 
@@ -121,7 +122,8 @@
     }
 
     function renderTransformedTree(paper, x, y, cb) {
-        var treeBlock = paper.group().addClass('transformed-tree');
+        var treeBlock = paper.group().addClass('transformed-tree')
+            .attr('transform', 'matrix(1 0 0 1 -55 0)');
         var treeBranch = treeBlock.group().addClass('branch');
 
         function renderBoxedText(g, dx, dy, w, h, text, line) {
@@ -170,13 +172,38 @@
         return treeBlock;
     }
 
-    renderSourceCode(s, 20, 50, function () {
-        renderSourceTree(s, 170, 50, function () {
-            renderTransformedTree(s, 340, 50, function () {
-                renderTransformedCode(s, 500, 50, function () {
+    function renderHeader(paper, x, y, text, cb) {
+        return paper.text(x, y, text)
+            .addClass('heading');
+    }
+
+    function renderArc(paper, x, y, cb) {
+        return paper
+            .path(Snap.format('M{x} {y} c 30 -40, 120 -40, 150 0', {x: x, y: y + 30}))
+            .addClass('arrow')
+            .animate({'strokeDashoffset': 800}, 1000, mina.linear, cb);
+    }
+
+    renderSourceCode(s, 15, 90, function () {
+        renderHeader(s, 140, 30, 'Parse HTML');
+        renderArc(s, 230 - 75 - 90, 50, function () {
+            renderSourceTree(s, 230, 90, function () {
+                renderHeader(s, 320, 30, 'Apply transformations');
+                renderArc(s, 320 - 75, 50, function () {
+                    renderTransformedTree(s, 410, 90, function () {
+                        renderHeader(s, 500, 30, 'Serialize');
+                        renderArc(s, 320 + 75 + 30, 50, function () {
+                            renderTransformedCode(s, 515, 90, function () {
+                                // done
+                            });
+                        });
+                    });
                 });
             });
         });
     });
+
+
+    // 15 110 30 150 30 150 30 110 15
 
 }());
