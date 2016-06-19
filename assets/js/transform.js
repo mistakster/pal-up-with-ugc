@@ -181,7 +181,7 @@
         return paper
             .path(Snap.format('M{x} {y} c 30 -40, 120 -40, 150 0', {x: x, y: y + 30}))
             .addClass('arrow')
-            .animate({'strokeDashoffset': 800}, 1000, mina.linear, cb);
+            .animate({'strokeDashoffset': 800}, 1000, mina.easeinout, cb);
     }
 
     renderSourceCode(s, 15, 90, function () {
