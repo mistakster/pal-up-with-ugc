@@ -174,14 +174,24 @@
 
     function renderHeader(paper, x, y, text, cb) {
         return paper.text(x, y, text)
-            .addClass('heading');
+            .addClass('heading')
+            .attr('opacity', 0)
+            .animate({opacity: 1}, 300, mina.linear, cb)
     }
 
     function renderArc(paper, x, y, cb) {
         return paper
-            .path(Snap.format('M{x} {y} c 30 -40, 120 -40, 150 0', {x: x, y: y + 30}))
-            .addClass('arrow')
-            .animate({'strokeDashoffset': 800}, 1000, mina.easeinout, cb);
+            .polyline([
+                x + 160, y + 30 + 50,
+                x + 116.1, y + 30 + 31.5,
+                x + 121.9, y + 30 + 45,
+                x + 10, y + 30 + 45,
+                x + 10, y + 30 + 55,
+                x + 121.9, y + 30 + 55,
+                x + 116.1, y + 30 + 68.5
+            ])
+            .attr({transform: 'matrix(1 0 0 1 -10 0)'})
+            .animate({transform: 'matrix(1 0 0 1 0 0)'}, 300, mina.easein, cb);
     }
 
     renderSourceCode(s, 15, 90, function () {
