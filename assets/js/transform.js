@@ -173,10 +173,14 @@
     }
 
     function renderHeader(paper, x, y, text, cb) {
-        return paper.text(x, y, text)
-            .addClass('heading')
-            .attr('opacity', 0)
-            .animate({opacity: 1}, 300, mina.linear, cb)
+			setTimeout(function () {
+				paper.text(x, y, text)
+					.addClass('heading')
+					.attr('opacity', 0)
+					.animate({opacity: 1}, 300, mina.linear)
+			}, 500);
+
+			cb();
     }
 
     function renderArc(paper, x1, x2, xc, cb) {
