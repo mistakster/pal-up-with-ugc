@@ -179,42 +179,48 @@
             .animate({opacity: 1}, 300, mina.linear, cb)
     }
 
-    function renderArc(paper, x, y, cb) {
-        const d = 30;
+    function renderArc(paper, x1, x2, xc, cb) {
+      const y = 60.5;
 
-        return paper
-            .polyline([
-                x + 160, y + d + 25.5,
-                x + 116.1, y + d + 16.25,
-                x + 121.9, y + d + 23,
-                x + 10, y + d + 23,
-                x + 10, y + d + 28,
-                x + 121.9, y + d + 28,
-                x + 116.1, y + d + 34.75
-            ])
-            .attr({transform: 'matrix(1 0 0 1 -10 0)', fill: '#aaa'})
-            .animate({transform: 'matrix(1 0 0 1 0 0)'}, 800, mina.easein, cb);
+      paper.line(x1, y, x1, y)
+        .attr({
+          stroke: 'black',
+          'stroke-width': 1
+        })
+        .animate({x2: x2}, 1000, mina.easeinout, cb);
+
+      setTimeout(function () {
+        paper.circle(xc, y, 0)
+          .attr({
+            fill: 'white',
+            stroke: 'black',
+            'stroke-width': 1
+          })
+          .animate({r: 5}, 300, mina.easein);
+      }, 500);
     }
 
-    renderSourceCode(s, 15, 90, function () {
-        renderHeader(s, 140, 30, 'Parse HTML');
-        renderArc(s, 230 - 75 - 90, 0, function () {
-            renderSourceTree(s, 230, 90, function () {
-                renderHeader(s, 320, 30, 'Apply transformations');
-                renderArc(s, 320 - 75, 0, function () {
-                    renderTransformedTree(s, 410, 90, function () {
-                        renderHeader(s, 500, 30, 'Serialize');
-                        renderArc(s, 320 + 75 + 30, 0, function () {
-                            renderTransformedCode(s, 515, 90, function () {
-                                // done
-                            });
-                        });
+  renderSourceCode(s, 15, 90, function () {
+    renderHeader(s, 140, 30, 'Parse HTML', function () {
+      renderArc(s, 70, 230, 140, function () {
+        renderSourceTree(s, 230, 90, function () {
+          renderHeader(s, 320, 30, 'Apply transformations', function () {
+            renderArc(s, 230, 410, 320, function () {
+              renderTransformedTree(s, 410, 90, function () {
+                renderHeader(s, 500, 30, 'Serialize', function () {
+                  renderArc(s, 410, 570, 500, function () {
+                    renderTransformedCode(s, 515, 90, function () {
+                      // done
                     });
+                  });
                 });
+              });
             });
+          });
         });
+      });
     });
-
+  });
 
     // 15 110 30 150 30 150 30 110 15
 
