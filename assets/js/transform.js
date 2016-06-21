@@ -179,7 +179,7 @@
             .animate({opacity: 1}, 300, mina.linear, cb)
     }
 
-      function renderArc(paper, x, y, cb) {
+    function renderArc(paper, x, y, cb) {
         const d = 30;
 
         return paper
