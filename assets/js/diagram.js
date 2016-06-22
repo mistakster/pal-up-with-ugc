@@ -247,7 +247,7 @@ shower.modules.require(['shower.global'], function (sh) {
 
 		paper.line(x1, y, x1, y)
 			.attr({
-				stroke: 'black',
+				stroke: '#449e48',
 				'stroke-width': 1
 			})
 			.animate({x2: x2}, 1000, mina.easeinout, cb);
